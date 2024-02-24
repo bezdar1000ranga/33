@@ -1,0 +1,39 @@
+.column {
+    width: 200px;
+    padding: 1rem;
+}
+
+.card-list {
+    margin-top: 1rem;
+}
+
+.card {
+    background-color: #f0f0f0;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.expired {
+    background-color: #ffa8a8;
+}
+
+.expired-message {
+    color: red;
+    font-weight: bold;
+}
+
+.columns {
+    display: flex;
+    justify-content: space-around;
+}
+
+button {
+    height: 38px;
+    width: 100%;
+}
+
+.customization__btns {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
