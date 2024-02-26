@@ -12,7 +12,7 @@ Vue.component('task-board', {
             oneFilter: null,
             twoFilter: null,
             thrFilter: null,
-
+            popup: false
         };
     },
     computed: {
@@ -112,36 +112,43 @@ Vue.component('task-board', {
             deadlineDate.setDate(deadlineDate.getDate() + task.deadline);
             return completeDate <= deadlineDate;
         },
+        switchPopup(){
+            this.popup = !this.popup;
+        }
     },
     template: `
     <div>
-        <form class="cardForm" @submit.prevent="addTask">
-            <p>
-                <label for="title">Title:</label>
-                <input id="title" v-model="title" placeholder="title">
-            </p>
-            <p>
-                <label for="desc">description:</label>
-                <input id="desc" v-model="desc" placeholder="desc">
-            </p>
-            <p>
-                <label for="deadline">days:</label>
-                <input type="number" id="deadline" v-model="deadline" placeholder="deadline" min="0">
-            </p>
-            <p>
+        <button v-on:click="switchPopup()">add Cart</button>
+        <div class="popup" v-show="popup === true">
+            <form class="cardForm" @submit.prevent="addTask">
+                <button v-on:click="switchPopup()">Close</button>
+                <p>
+                    <label for="title">Title:</label>
+                    <input id="title" v-model="title" placeholder="title">
+                </p>
+                <p>
+                    <label for="desc">description:</label>
+                    <input id="desc" v-model="desc" placeholder="desc">
+                </p>
+                <p>
+                    <label for="deadline">days:</label>
+                    <input type="number" id="deadline" v-model="deadline" placeholder="deadline" min="0">
+                </p>
+                <p>
 
-                <label for="priority">priority:</label>
-                <select v-model="importance" id="priority">
-                    <option value="1">Низкий</option>
-                    <option value="2">Средний</option>
-                    <option value="3">Высокий</option>
-                    <option value="4">Срочный</option>
-                </select>
-            </p>
-            <p>
-                <input type="submit" value="Submit">
-            </p>
-        </form>
+                    <label for="priority">priority:</label>
+                    <select v-model="importance" id="priority">
+                        <option value="1">Низкий</option>
+                        <option value="2">Средний</option>
+                        <option value="3">Высокий</option>
+                        <option value="4">Срочный</option>
+                    </select>
+                </p>
+                <p>
+                    <input type="submit" value="Submit">
+                </p>
+            </form>
+        </div>
         <div class="columns">
             <div class="column">
                 <h2>Запланированные задачи</h2>
